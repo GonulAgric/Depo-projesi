@@ -32,15 +32,19 @@ public class İslemler {
                 girisPaneli();
                 break;
             case "3":
+                urunGirisi();
                 girisPaneli();
                 break;
             case "4":
+                urunuRafaKoy();
                 girisPaneli();
                 break;
             case "5":
+                urunCikisi();
                 girisPaneli();
                 break;
             case "6":
+                cıkıs();
                 girisPaneli();
                 break;
             default:
@@ -116,7 +120,67 @@ public class İslemler {
             }while (flag);
 
             urunListesiMap.get(arananId).setMiktar(guncelMıktar +urunListesiMap.get(arananId).getMiktar());
+
+            System.out.println("urun mıktarınız guncel hale getırıldı\n" + "guncel mıktar: " + urunListesiMap.get(arananId).getMiktar());
+        }else {
+            System.out.println("aradıgınız urun yoktur");
+            urunGirisi();
         }
     }
+    public static void urunuRafaKoy(){
+        System.out.println("*******urunu rafa koy sayfası********");
+        System.out.println("Rafa yerlestirmek istediginiz  urunun Id giriniz");
+        int arananId=scan.nextInt();
+        if(urunListesiMap.keySet().contains(arananId)){
+            System.out.println("hangi rafa kaldıracagınızı yazınız");
+            String guncelraf=scan.next();
+            urunListesiMap.get(arananId).setRaf(guncelraf);
+        }else {
+            System.out.println("Bu urun depoda mevcut degildir");
+            urunuRafaKoy();
 
-}
+        }
+
+    }
+
+    public static void urunCikisi(){
+        System.out.println("*****urun cıkıs sayfası*****");
+        System.out.println("Cıkısını yapmak ıstedıgınız urunun ID sini giriniz");
+        int arananId=scan.nextInt();
+        if(urunListesiMap.keySet().contains(arananId)){
+            System.out.println("miktar giriniz");
+            int guncelMiktar=0;
+            boolean flag=true;
+            do {
+                try {
+                    if (flag == true) {
+                        scan.nextLine();
+                    }
+                    guncelMiktar = scan.nextInt();
+                    scan.nextLine();//dummy
+                    flag = false;
+                }catch (Exception e){
+                    System.out.println("Lutfen gecerli bir tamsayı giriniz");
+                }
+            }while (flag);
+
+            if(urunListesiMap.get(arananId).getMiktar()-guncelMiktar<0){
+                System.out.println("Deponuzda bu miktarda urun yoktur.\n " +
+                        "bulunan miktar"+urunListesiMap.get(arananId).getMiktar());
+            }else {
+                urunListesiMap.get(arananId).setMiktar(urunListesiMap.get(arananId).getMiktar() - guncelMiktar);
+                System.out.println("Urun miktarınız guncel hale getirildi\n guncel miktar "
+                        + urunListesiMap.get(arananId).getMiktar());
+            }
+            }else {
+                System.out.println("Aradıgınız urun yoktur");
+            }
+        }
+
+        public static void cıkıs(){
+            System.out.println("Depodan cıkıs yaptınız tekrar beklerız");
+
+    }
+        }
+
+

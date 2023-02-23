@@ -9,6 +9,7 @@ public class UrunTanımlama {
     public UrunTanımlama(String urunİsmi, String uretici, String birim, int urunMiktar, String raf) {
     }
 
+
     @Override
     public String toString() {
         return "UrunTanımlama{" +
@@ -60,8 +61,8 @@ public class UrunTanımlama {
         this.raf = raf;
     }
 
- //   public UrunTanımlama() {
- //   }
+    public UrunTanımlama() {
+    }
 
     public UrunTanımlama(String urunİsmi, String uretici, int miktar, String birim, String raf) {
         this.urunİsmi = urunİsmi;
